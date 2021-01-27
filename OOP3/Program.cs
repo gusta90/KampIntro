@@ -13,15 +13,18 @@ namespace OOP3
 
             ILoggerService databaseLoggerService = new DatabaseLoggerService();
             ILoggerService fileLoggerService = new FileLoggerService();
+            ILoggerService smsLoggerService = new SmsLoggerService();
 
-            List<ILoggerService> loggers = new List<ILoggerService> { new SmsLoggerService(), new FileLoggerService() };
+            List<ILoggerService> loggers = new List<ILoggerService> { databaseLoggerService, smsLoggerService, fileLoggerService };
 
             BasvuruManager basvuruManager = new BasvuruManager();
-            basvuruManager.BasvuruYap(konutKrediManager, loggers);
+            //basvuruManager.BasvuruYap(konutKrediManager, loggers);
+            //basvuruManager.BasvuruYap(ihtiyacKrediManager, loggers);
+            //basvuruManager.BasvuruYap(tasitKrediManager, loggers);
 
             List <IKrediManager> krediler = new List<IKrediManager>() {ihtiyacKrediManager, tasitKrediManager };
 
-            //basvuruManager.KrediOnBilgilendirmesiYap(krediler);
+            basvuruManager.KrediOnBilgilendirmesiYap(krediler);
 
         }
     }
